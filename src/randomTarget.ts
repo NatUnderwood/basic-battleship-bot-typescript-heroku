@@ -9,9 +9,17 @@ export class RandomTarget {
 
     public getNextRandomRowAndColumn() {
         var randomPosition: number = this.findRandomTarget(50);
-        var newRowNumber: number = Math.ceil(((randomPosition)*2)/10) + 64;
-        var newCol: number = (randomPosition*2)%10+1;
+        var parity: number = (Math.ceil(randomPosition/5))%2
+        var newRowNumber: number = Math.ceil(randomPosition/5) + 64;
         var newRowString: string =String.fromCharCode(newRowNumber);
+        var newCol: number;
+        if (parity == 0) {
+            newCol = (randomPosition*2)%10+1;
+        }
+        else {
+            newCol = (randomPosition*2+1)%10+1;
+        }
+        
         return {Row: newRowString, Column: newCol}
     }
 
