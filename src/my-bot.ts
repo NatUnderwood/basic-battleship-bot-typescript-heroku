@@ -12,7 +12,7 @@ export class MyBot {
 
     public selectTarget(gamestate) {
         var previousShot = gamestate.MyShots.WasHit;
-        if(!previousShot|| previousShot == undefined ) {
+        if(!previousShot ) {
             var isValid: number =0;
             var random = new Random();
             while (isValid == 0)    
