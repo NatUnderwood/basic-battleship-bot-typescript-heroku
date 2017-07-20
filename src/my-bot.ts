@@ -11,7 +11,7 @@ export class MyBot {
     }
 
     public selectTarget(gamestate) {
-        if  (gamestate.MyShots) {
+        if  (gamestate.MyShots.length > 0) {
             /*var previousShot = gamestate.MyShots[0].WasHit;
             var result: {Row: string, Column: number };
             if(!previousShot ) {
