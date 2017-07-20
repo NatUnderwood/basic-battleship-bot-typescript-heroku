@@ -14,7 +14,7 @@ export class MyBot {
         if  (gamestate.MyShots.length > 0) {
             //var previousShot = gamestate.MyShots[0].WasHit;
             var result: {Row: string, Column: number };
-            if(true/*!previousShot*/ ) {
+            if(true/*!previousShot*/) {
                 var isValid: number = 0;
                 var randomTarget = new RandomTarget;
                 while (isValid == 0) {   
