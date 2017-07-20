@@ -1,4 +1,4 @@
-import {Random} from './random'
+import {RandomTarget} from './randomTarget'
 export class MyBot {
     public getShipPositions() {
         return [
@@ -13,12 +13,12 @@ export class MyBot {
     public selectTarget(gamestate) {
         if  (gamestate.MyShots.length > 0) {
             var previousShot = gamestate.MyShots[0].WasHit;
-            var result //: {Row: string, Column: number };
-            if(!previousShot ) {
+            var result: {Row: string, Column: number };
+            if(true/*!previousShot*/ ) {
                 var isValid: number = 0;
-                var random = new Random();
+                var randomTarget = new RandomTarget;
                 while (isValid == 0)    
-                    var newShot = random.getNextRandomTarget();
+                    var newShot = randomTarget.getNextRandomTarget();
                     var alreadyHit: number = 0;
                     for (var i = 0;i< gamestate.MyShots.length; i++ ){
                         if (newShot.Column == gamestate.MyShots[i].Position.Column && newShot.Row == gamestate.MyShots[i].Position.Row){
