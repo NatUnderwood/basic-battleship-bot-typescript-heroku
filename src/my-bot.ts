@@ -12,7 +12,7 @@ export class MyBot {
 
     public selectTarget(gamestate) {
         if  (gamestate.MyShots) {
-            var previousShot = gamestate.MyShots[0].WasHit;
+            /*var previousShot = gamestate.MyShots[0].WasHit;
             var result: {Row: string, Column: number };
             if(!previousShot ) {
                 var isValid: number =0;
@@ -32,7 +32,8 @@ export class MyBot {
 
                 result ={ Row: newShot.Row, Column: newShot.Column}
             }
-            return result
+            return result*/
+            return { Row: "D", Column: 10 };  
 
         }
         else {
