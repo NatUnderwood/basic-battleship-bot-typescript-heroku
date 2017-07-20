@@ -26,7 +26,7 @@ export class MyBot {
                         }
 
                     }
-                    if (alreadyHit = 0){
+                    if (alreadyHit == 0){
                         isValid = 1
                     }
 
