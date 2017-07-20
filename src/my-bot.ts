@@ -11,7 +11,7 @@ export class MyBot {
     }
 
     public selectTarget(gamestate) {
-        if (gamestate.MyShots.length > 0) {
+        if ( gamestate.MyShots == undefined||gamestate.MyShots.length > 0 ) {
             var previousShot = gamestate.MyShots.WasHit;
             var result: {Row: string, Column: number };
             if(!previousShot ) {
