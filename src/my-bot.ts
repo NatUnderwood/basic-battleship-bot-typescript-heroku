@@ -11,29 +11,32 @@ export class MyBot {
     }
 
     public selectTarget(gamestate) {
-        var previousShot = gamestate.MyShots.WasHit;
-        if(!previousShot ) {
-            var isValid: number =0;
-            var random = new Random();
-            while (isValid == 0)    
-                var newShot = random.getNextRandomTarget();
-                var alreadyHit: number = 0;
-                for (var i = 0;i< gamestate.MyShots.length; i++ ){
-                    if (newShot.Column == gamestate.MyShots[i].Position.Column && newShot.Row == gamestate.MyShots[i].Position.Row){
-                        alreadyHit = 1
+        if (gamestate.MyShots.length > 0) {
+            var previousShot = gamestate.MyShots.WasHit;
+            var result: {Row: string, Column: number };
+            if(!previousShot ) {
+                var isValid: number =0;
+                var random = new Random();
+                while (isValid == 0)    
+                    var newShot = random.getNextRandomTarget();
+                    var alreadyHit: number = 0;
+                    for (var i = 0;i< gamestate.MyShots.length; i++ ){
+                        if (newShot.Column == gamestate.MyShots[i].Position.Column && newShot.Row == gamestate.MyShots[i].Position.Row){
+                            alreadyHit = 1
+                        }
+
+                    }
+                    if (alreadyHit = 0){
+                        isValid = 1
                     }
 
-                }
-                if (alreadyHit = 0){
-                    isValid = 1
-                }
-
-            return { Row: newShot.Row, Column: newShot.Column}
+                result ={ Row: newShot.Row, Column: newShot.Column}
+            }
+            return result
         }
-        
-        return { Row: "A", Column: 1 };  
+        else {
+            return { Row: "A", Column: 1 };  
+        }
     }
-
-
 }
 

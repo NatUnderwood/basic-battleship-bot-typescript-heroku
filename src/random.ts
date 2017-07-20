@@ -13,7 +13,6 @@ export class Random {
         var newRowNumber: number = Math.ceil(((randomPosition)*2)/10) + 64;
         var newCol: number = (randomPosition*2)%10+1;
         var newRowString: string =String.fromCharCode(newRowNumber);
-
         return {Row: newRowString, Column: newCol}
     }
 }
