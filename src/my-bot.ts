@@ -30,7 +30,7 @@ export class MyBot {
                         isValid = 1
                     }
 
-                result = newShot
+                    result = newShot
                 }
             }
             return result //*/
