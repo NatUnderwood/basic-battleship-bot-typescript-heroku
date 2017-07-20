@@ -1,7 +1,7 @@
 export class RandomTarget {
     public getNextRandomTarget() {
         //return this.getNextRandomRowAndColumn();
-        return {Row: "D", Column: 5}
+        return { Row: "D", Column: 5 }
     }    
     public findRandomTarget(numberOfSquares: number): number {
         var nextTarget: number =Math.floor(Math.random() * numberOfSquares + 1)
