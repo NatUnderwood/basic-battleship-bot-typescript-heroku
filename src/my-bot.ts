@@ -17,7 +17,7 @@ export class MyBot {
             if(true/*!previousShot*/ ) {
                 var isValid: number = 0;
                 var randomTarget = new RandomTarget;
-                while (isValid == 0)    
+                while (isValid == 0) {   
                     var newShot = randomTarget.getNextRandomTarget();
                     var alreadyHit: number = 0;
                     for (var i = 0;i< gamestate.MyShots.length; i++ ){
@@ -31,6 +31,7 @@ export class MyBot {
                     }
 
                 result = newShot
+                }
             }
             return result //*/
             //return { Row: "D", Column: 10 };  
