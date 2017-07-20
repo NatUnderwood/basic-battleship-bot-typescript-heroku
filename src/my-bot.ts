@@ -13,9 +13,9 @@ export class MyBot {
     public selectTarget(gamestate) {
         if  (gamestate.MyShots.length > 0) {
             var previousShot = gamestate.MyShots[0].WasHit;
-            /*var result: {Row: string, Column: number };
+            var result //: {Row: string, Column: number };
             if(!previousShot ) {
-                var isValid: number =0;
+                var isValid: number = 0;
                 var random = new Random();
                 while (isValid == 0)    
                     var newShot = random.getNextRandomTarget();
@@ -30,10 +30,10 @@ export class MyBot {
                         isValid = 1
                     }
 
-                result ={ Row: newShot.Row, Column: newShot.Column}
+                result = newShot
             }
-            return result*/
-            return { Row: "D", Column: 10 };  
+            return result //*/
+            //return { Row: "D", Column: 10 };  
 
         }
         else {

@@ -1,9 +1,7 @@
 export class Random {
     public getNextRandomTarget() {
-        var row = this.getNextRandomRowAndColumn().Row;
-        var column = this.getNextRandomRowAndColumn().Column;
-        return { Row: row, Column: column }
-    }
+        return this.getNextRandomRowAndColumn();
+    }    
     public findRandomTarget(): number {
         var nextTarget: number =Math.floor(Math.random() * 50 + 1)
         return nextTarget
