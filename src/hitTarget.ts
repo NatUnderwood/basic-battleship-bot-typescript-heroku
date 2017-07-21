@@ -62,41 +62,41 @@ export class HitTarget {
                     if (directionOfTravel = 'right') {    
                         switch(squareRight){
                             case 'blank':
-                            blankEndsFound++
-                            break
+                                blankEndsFound++
+                                break
                             case 'hitWater':
-                            boatEndsFound++
-                            break
+                                boatEndsFound++
+                                break
                             case 'edge':
-                            boatEndsFound++
-                            break
+                                boatEndsFound++
+                                break
                             case 'hitShip':
-                            currentPosition = { Row: currentPosition.Row, Column: (currentPosition.Column + 1) }
-                            length++
-                            break
+                                currentPosition = { Row: currentPosition.Row, Column: (currentPosition.Column + 1) }
+                                length++
+                                break
                         }
                     }
                     if (directionOfTravel = 'left') {    
                         switch(squareLeft){
                             case 'blank':
-                            directionOfTravel = 'right'
-                            blankEndsFound++
-                            currentPosition = position
-                            break
+                                directionOfTravel = 'right'
+                                blankEndsFound++
+                                currentPosition = position
+                                break
                             case 'hitWater':
-                            boatEndsFound++
-                            directionOfTravel = 'right'
-                            currentPosition = position
-                            break
+                                boatEndsFound++
+                                directionOfTravel = 'right'
+                                currentPosition = position
+                                break
                             case 'edge':
-                            boatEndsFound++
-                            directionOfTravel = 'right'
-                            currentPosition = position
-                            break
+                                boatEndsFound++
+                                directionOfTravel = 'right'
+                                currentPosition = position
+                                break
                             case 'hitShip':
-                            currentPosition = { Row: currentPosition.Row, Column: (currentPosition.Column - 1) }
-                            length++
-                            break
+                                currentPosition = { Row: currentPosition.Row, Column: (currentPosition.Column - 1) }
+                                length++
+                                break
                         }
                     }
                     
@@ -155,11 +155,11 @@ export class HitTarget {
         return direction
     }
     public destroyShip(currentGrid, position) {
-        var orientation = this.findOrientation(currentGrid,position);
+        //var orientation = this.findOrientation(currentGrid,position);
         var hitSquare;
         var choosingSquare = 'searching';
         var currentPosition = position;
-        if (orientation == 'leftRight') {
+        if (/*orientation == 'leftRight'*/) {
             var directionOfTravel: string = 'left'
             while (choosingSquare != 'done') {    
                 var squareLeft: string = this.checkSides(currentGrid, currentPosition,'l')
