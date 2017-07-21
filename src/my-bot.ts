@@ -42,9 +42,9 @@ export class MyBot {
                     result = hitTarget.guessOrientation(gamestate.MyShots, previousShot.Position)
                 }
                 else {
-                    var randomTarget = new RandomTarget;
-                    result = randomTarget.getNextRandomTarget()
-                    //result = hitTarget.destroyShip(gamestate.MyShots, previousShot.Position)
+                    //var randomTarget = new RandomTarget;
+                    //result = randomTarget.getNextRandomTarget()
+                    result = hitTarget.destroyShip(gamestate.MyShots, previousShot.Position)
                 }
             }
             return result
