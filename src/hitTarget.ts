@@ -161,7 +161,7 @@ export class HitTarget {
         var currentPosition = position;
         if (/*orientation == 'leftRight'*/true) {
             var directionOfTravel: string = 'left'
-            var counter: number;
+            var counter: number = 0;
             while (choosingSquare != 'done'&&counter<100) {    
                 var squareLeft: string = this.checkSides(currentGrid, currentPosition,'l')
                 
