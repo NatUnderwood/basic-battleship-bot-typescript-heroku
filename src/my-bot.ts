@@ -18,19 +18,19 @@ export class MyBot {
             //var finished = hitTarget.checkDone(gamestate.MyShots,previousShot.Position);
             var result: {Row: string, Column: number };
             if((true)/*!previousShot.WasHit) || finished*/) {
-                var isValid: number = 0;
+                var isValid: boolean = true ;
                 var randomTarget = new RandomTarget;
                 while (isValid) {   
                     var newShot = randomTarget.getNextRandomTarget();
-                    var alreadyHit: number = 0;
+                    var alreadyHit = false;
                     for (var i = 0;i< gamestate.MyShots.length; i++ ){
                         if (newShot.Column == gamestate.MyShots[i].Position.Column && newShot.Row == gamestate.MyShots[i].Position.Row){
-                            alreadyHit = 1
+                            alreadyHit = true
                         }
 
                     }
-                    if (alreadyHit == 0){
-                        isValid = 1
+                    if (alreadyHit){
+                        isValid = false
                     }
 
                     result = newShot
