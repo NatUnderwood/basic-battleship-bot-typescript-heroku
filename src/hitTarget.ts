@@ -163,7 +163,7 @@ export class HitTarget {
             var directionOfTravel: string = 'left'
             while (choosingSquare != 'done') {    
                 var squareLeft: string = this.checkSides(currentGrid, currentPosition,'l')
-                var squareRight: string = this.checkSides(currentGrid,currentPosition,'r')
+                
                 if (directionOfTravel = 'left') {    
                     switch(squareLeft){
                         case 'blank':
@@ -183,6 +183,7 @@ export class HitTarget {
                         break
                     }
                 }
+                var squareRight: string = this.checkSides(currentGrid,currentPosition,'r')
                 if (directionOfTravel = 'right') {    
                     switch(squareRight){
                         case 'blank':
