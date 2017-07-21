@@ -1,4 +1,5 @@
 import {RandomTarget} from './randomTarget'
+import {HitTarget} from './hitTarget'
 export class MyBot {
     public getShipPositions() {
         return [
@@ -12,9 +13,11 @@ export class MyBot {
 
     public selectTarget(gamestate) {
         if  (gamestate.MyShots.length > 0) {
-            //var previousShot = gamestate.MyShots[0].WasHit;
+            var previousShot = gamestate.MyShots[gamestate.MyShots.length - 1];
+            var hitTarget = new HitTarget;
+            var finished = hitTarget.checkDone(gamestate.MyShots,previousShot.Position);
             var result: {Row: string, Column: number };
-            if(true/*!previousShot*/) {
+            if(!previousShot.WasHit || finished) {
                 var isValid: number = 0;
                 var randomTarget = new RandomTarget;
                 while (isValid == 0) {   
@@ -33,8 +36,16 @@ export class MyBot {
                     result = newShot
                 }
             }
-            return result //*/
-            //return { Row: "D", Column: 10 };  
+            else {
+                var orientation = hitTarget.findOrientation(gamestate.MyShots, previousShot.Position);
+                if (orientation == 'undetermined') {
+                    result = hitTarget.guessOrientation(gamestate.MyShots, previousShot.Position)
+                }
+                else {
+                    hitTarget.destroyShip(gamestate.MyShots, previousShot.Position)
+                }
+            }
+            return result
 
         }
         else {
