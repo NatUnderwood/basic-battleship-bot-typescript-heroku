@@ -150,7 +150,7 @@ export class HitTarget {
         var hitSquare;
         var choosingSquare = 'searching';
         var currentPosition = position;
-        if (orientation == 'leftRight') {
+        if (/*orientation == 'leftRight'*/true) {
             var directionOfTravel: string = 'left'
             while (choosingSquare != 'done') {    
                 var squareLeft: string = this.checkSides(currentGrid, currentPosition,'l')
@@ -174,7 +174,7 @@ export class HitTarget {
                         break
                     }
                 }
-                /*if (directionOfTravel = 'right') {    
+                if (directionOfTravel = 'right') {    
                     switch(squareRight){
                         case 'blank':
                         hitSquare = { Row: currentPosition.Row, Column: (currentPosition.Column + 1) }
@@ -192,7 +192,7 @@ export class HitTarget {
                         currentPosition = { Row: currentPosition.Row, Column: (currentPosition.Column + 1) }
                         break
                     }
-                }*/
+                }
             }
         }
         return hitSquare;
