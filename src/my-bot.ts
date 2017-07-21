@@ -14,7 +14,7 @@ export class MyBot {
     public selectTarget(gamestate) {
         if  (gamestate.MyShots.length > 0) {
             //var previousShot = gamestate.MyShots[gamestate.MyShots.length - 1];
-            var hitTarget = new HitTarget;
+            //var hitTarget = new HitTarget;
             //var finished = hitTarget.checkDone(gamestate.MyShots,previousShot.Position);
             var result: {Row: string, Column: number };
             if((true)/*!previousShot.WasHit) || finished*/) {
@@ -37,7 +37,7 @@ export class MyBot {
                 }
             }
             else {
-                var orientation = hitTarget.findOrientation(gamestate.MyShots, previousShot.Position);
+                /*var orientation = hitTarget.findOrientation(gamestate.MyShots, previousShot.Position);
                 if (orientation == 'undetermined') {
                     result = hitTarget.guessOrientation(gamestate.MyShots, previousShot.Position)
                 }
@@ -45,7 +45,7 @@ export class MyBot {
                     var randomTarget = new RandomTarget;
                     result = randomTarget.getNextRandomTarget()
                     //result = hitTarget.destroyShip(gamestate.MyShots, previousShot.Position)
-                }
+                }*/
             }
             return result
 
