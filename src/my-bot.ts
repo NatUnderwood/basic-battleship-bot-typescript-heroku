@@ -25,11 +25,11 @@ export class MyBot {
                     var alreadyHit = false;
                     for (var i = 0;i< gamestate.MyShots.length; i++ ){
                         if (newShot.Column == gamestate.MyShots[i].Position.Column && newShot.Row == gamestate.MyShots[i].Position.Row){
-                            alreadyHit = true
+                            alreadyHit = true;
                         }
 
                     }
-                    if (alreadyHit){
+                    if (!alreadyHit){
                         isValid = false
                     }
 
