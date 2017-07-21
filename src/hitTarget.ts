@@ -146,11 +146,11 @@ export class HitTarget {
         return direction
     }
     public destroyShip(currentGrid, position) {
-        var orientation = this.findOrientation(currentGrid,position);
+        //var orientation = this.findOrientation(currentGrid,position);
         var hitSquare;
         var choosingSquare = 'searching';
         var currentPosition = position;
-        if (orientation == 'leftRight') {
+        if (/*orientation == 'leftRight'*/true) {
             var directionOfTravel: string = 'left'
             while (choosingSquare != 'done') {    
                 var squareLeft: string = this.checkSides(currentGrid, currentPosition,'l')
