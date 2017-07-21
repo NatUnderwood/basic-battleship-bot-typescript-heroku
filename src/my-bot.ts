@@ -49,7 +49,7 @@ export class MyBot {
 
         }
         else {
-            return { Row: "C", Column: 3 };  
+            return { Row: "A", Column: 5 };  
         }
     }
 }
