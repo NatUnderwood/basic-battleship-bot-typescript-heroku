@@ -164,6 +164,25 @@ export class HitTarget {
             while (choosingSquare != 'done') {    
                 var squareLeft: string = this.checkSides(currentGrid, currentPosition,'l')
                 var squareRight: string = this.checkSides(currentGrid,currentPosition,'r')
+                                if (directionOfTravel = 'right') {    
+                    switch(squareRight){
+                        case 'blank':
+                        hitSquare = { Row: currentPosition.Row, Column: (currentPosition.Column + 1) }
+                        choosingSquare = 'done'
+                        break
+                        case 'hitWater':
+                        hitSquare = { Row: 'J', Column: 10 }
+                        choosingSquare = 'done'
+                        break
+                        case 'edge':
+                        hitSquare = { Row: 'J', Column: 10 }
+                        choosingSquare = 'done'
+                        break
+                        case 'hitShip':
+                        currentPosition = { Row: currentPosition.Row, Column: (currentPosition.Column + 1) }
+                        break
+                    }
+                }
                 if (directionOfTravel = 'left') {    
                     switch(squareLeft){
                         case 'blank':
@@ -183,25 +202,7 @@ export class HitTarget {
                         break
                     }
                 }
-                if (directionOfTravel = 'right') {    
-                    switch(squareRight){
-                        case 'blank':
-                        hitSquare = { Row: currentPosition.Row, Column: (currentPosition.Column + 1) }
-                        choosingSquare = 'done'
-                        break
-                        case 'hitWater':
-                        hitSquare = { Row: 'J', Column: 10 }
-                        choosingSquare = 'done'
-                        break
-                        case 'edge':
-                        hitSquare = { Row: 'J', Column: 10 }
-                        choosingSquare = 'done'
-                        break
-                        case 'hitShip':
-                        currentPosition = { Row: currentPosition.Row, Column: (currentPosition.Column + 1) }
-                        break
-                    }
-                }
+
             }
         }
         return hitSquare;
