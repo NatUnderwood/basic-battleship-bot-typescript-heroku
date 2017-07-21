@@ -101,7 +101,7 @@ export class HitTarget {
                         }
                     }
                     
-                    if (((blankEndsFound + boatEndsFound) > 1)|| length == 5){
+                    if (((blankEndsFound + boatEndsFound) == 2)|| length == 5){
                         directionOfTravel = 'done'
                     }
                     counter++
