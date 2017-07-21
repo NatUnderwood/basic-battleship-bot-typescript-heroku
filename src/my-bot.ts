@@ -20,7 +20,7 @@ export class MyBot {
             if((!previousShot.WasHit) || finished) {
                 var isValid: number = 0;
                 var randomTarget = new RandomTarget;
-                while (isValid == 0) {   
+                while (isValid) {   
                     var newShot = randomTarget.getNextRandomTarget();
                     var alreadyHit: number = 0;
                     for (var i = 0;i< gamestate.MyShots.length; i++ ){
@@ -42,7 +42,9 @@ export class MyBot {
                     result = hitTarget.guessOrientation(gamestate.MyShots, previousShot.Position)
                 }
                 else {
-                    result = hitTarget.destroyShip(gamestate.MyShots, previousShot.Position)
+                    var randomTarget = new RandomTarget;
+                    result = randomTarget.getNextRandomTarget()
+                    //result = hitTarget.destroyShip(gamestate.MyShots, previousShot.Position)
                 }
             }
             return result
