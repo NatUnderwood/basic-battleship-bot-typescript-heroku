@@ -47,8 +47,9 @@ export class HitTarget {
 
     public checkDone(currentGrid, position): boolean {
         var boatEndsFound = 0;
-        var blankEndsFound = 0;
-        var length = 1;
+        //var blankEndsFound = 0;
+        //var length = 1;
+        var endsFound = 0;
         var boatSunk = false
         var orientation = this.findOrientation(currentGrid, position)
         var directionOfTravel: string = 'left';
@@ -62,17 +63,20 @@ export class HitTarget {
                     if (directionOfTravel = 'right') {    
                         switch(squareRight){
                             case 'blank':
-                                blankEndsFound++
+                                //blankEndsFound++
+                                endsFound++
                                 break
                             case 'hitWater':
                                 boatEndsFound++
+                                endsFound++
                                 break
                             case 'edge':
                                 boatEndsFound++
+                                endsFound++
                                 break
                             case 'hitShip':
                                 currentPosition = { Row: currentPosition.Row, Column: (currentPosition.Column + 1) }
-                                length++
+                                //length++
                                 break
                         }
                     }
@@ -81,32 +85,35 @@ export class HitTarget {
                         switch(squareLeft){
                             case 'blank':
                                 directionOfTravel = 'right'
-                                blankEndsFound++
+                                //blankEndsFound++
+                                endsFound++
                                 currentPosition = position
                                 break
                             case 'hitWater':
                                 boatEndsFound++
+                                endsFound++
                                 directionOfTravel = 'right'
                                 currentPosition = position
                                 break
                             case 'edge':
                                 boatEndsFound++
+                                endsFound++
                                 directionOfTravel = 'right'
                                 currentPosition = position
                                 break
                             case 'hitShip':
                                 currentPosition = { Row: currentPosition.Row, Column: (currentPosition.Column - 1) }
-                                length++
+                                //length++
                                 break
                         }
                     }
                     
-                    if (((blankEndsFound + boatEndsFound) == 2)|| length == 5){
+                    if ((/*(blankEndsFound + boatEndsFound)*/endsFound == 2)/*|| length == 5*/){
                         directionOfTravel = 'done'
                     }
                     counter++
                 }
-                if (boatEndsFound == 2 || length == 5){
+                if (boatEndsFound == 2 /*|| length == 5*/){
                     boatSunk = true
                 }
             }
