@@ -150,7 +150,7 @@ export class HitTarget {
         var hitSquare;
         var choosingSquare = 'searching';
         var currentPosition = position;
-        if (/*orientation == 'leftRight'*/true) {
+        if (orientation == 'leftRight') {
             var directionOfTravel: string = 'left'
             while (choosingSquare != 'done') {    
                 var squareLeft: string = this.checkSides(currentGrid, currentPosition,'l')
