@@ -17,7 +17,7 @@ export class MyBot {
             var hitTarget = new HitTarget;
             //var finished = hitTarget.checkDone(gamestate.MyShots,previousShot.Position);
             var result: {Row: string, Column: number };
-            if((!previousShot.WasHit) /*|| finished*/) {
+            if((true)/*!previousShot.WasHit) || finished*/) {
                 var isValid: number = 0;
                 var randomTarget = new RandomTarget;
                 while (isValid) {   
