@@ -13,7 +13,7 @@ export class MyBot {
 
     public selectTarget(gamestate) {
         if  (gamestate.MyShots.length > 0) {
-            var previousShot = gamestate.MyShots[gamestate.MyShots.length - 1];
+            //var previousShot = gamestate.MyShots[gamestate.MyShots.length - 1];
             var hitTarget = new HitTarget;
             //var finished = hitTarget.checkDone(gamestate.MyShots,previousShot.Position);
             var result: {Row: string, Column: number };
