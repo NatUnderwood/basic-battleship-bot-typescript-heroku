@@ -45,7 +45,7 @@ export class HitTarget {
         return alreadyHit;
     }
 
-    public checkDone(currentGrid, position) {
+    public checkDone(currentGrid, position): boolean {
         var boatEndsFound = 0;
         var blankEndsFound = 0;
         var length = 1;
