@@ -106,7 +106,7 @@ export class HitTarget {
                     }
                     counter++
                 }
-                if (boatEndsFound == 2 || length == 5){
+                if (boatEndsFound == 2 || length == 20){
                     boatSunk = true
                 }
             }
