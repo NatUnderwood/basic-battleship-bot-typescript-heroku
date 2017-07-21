@@ -100,6 +100,7 @@ export class HitTarget {
                 }
             }
         }
+        return done
     }
     public guessOrientation(currentGrid, position){
         var done: string = 'no'
