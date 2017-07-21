@@ -66,6 +66,10 @@ export class HitTarget {
                             currentPosition = position
                             break
                             case 'hitWater':
+                            boatEndsFound++
+                            directionOfTravel = 'right'
+                            currentPosition = position
+                            break
                             case 'edge':
                             boatEndsFound++
                             directionOfTravel = 'right'
@@ -83,8 +87,11 @@ export class HitTarget {
                             blankEndsFound++
                             break
                             case 'hitWater':
+                            boatEndsFound++
+                            break
                             case 'edge':
                             boatEndsFound++
+                            break
                             case 'hitShip':
                             currentPosition = { Row: currentPosition.Row, Column: (currentPosition.Column + 1) }
                             length++
