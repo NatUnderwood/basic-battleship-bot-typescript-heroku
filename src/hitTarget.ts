@@ -162,19 +162,19 @@ export class HitTarget {
                         choosingSquare = 'done'
                         break
                         case 'hitWater':
-                        //currentPosition = position;
+                        currentPosition = position;
                         directionOfTravel = 'right'
                         break
                         case 'edge':
                         directionOfTravel = 'right';
-                        ///currentPosition = position;
+                        currentPosition = position;
                         break
                         case 'hitShip':
                         currentPosition = { Row: currentPosition.Row, Column: (currentPosition.Column - 1) }
                         break
                     }
                 }
-                if (directionOfTravel = 'right') {    
+                /*if (directionOfTravel = 'right') {    
                     switch(squareRight){
                         case 'blank':
                         hitSquare = { Row: currentPosition.Row, Column: (currentPosition.Column + 1) }
@@ -192,7 +192,7 @@ export class HitTarget {
                         currentPosition = { Row: currentPosition.Row, Column: (currentPosition.Column + 1) }
                         break
                     }
-                }
+                }*/
             }
         }
         return hitSquare;
