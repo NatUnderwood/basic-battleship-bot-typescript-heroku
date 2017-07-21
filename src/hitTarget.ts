@@ -32,7 +32,7 @@ export class HitTarget {
         if (alreadyHit != 'edge') {
             alreadyHit = 'blank';
             for (var i = 0;i< currentGrid.length; i++ ){
-                if ((position.Column + columnAdd) == currentGrid[i].Position.Column && String.fromCharCode(position.Row.charCodeAt(0) + rowAdd) == currentGrid[i].Position.Row){
+                if (((position.Column + columnAdd) == currentGrid[i].Position.Column) && (String.fromCharCode(position.Row.charCodeAt(0) + rowAdd) == currentGrid[i].Position.Row)){
                     if (currentGrid[i].WasHit){
                         alreadyHit = 'hitShip'
                     }
@@ -146,10 +146,10 @@ export class HitTarget {
         return direction
     }
     public destroyShip(currentGrid, position) {
-        var orientation = this.findOrientation(currentGrid,position)
+        var orientation = this.findOrientation(currentGrid,position);
         var hitSquare;
-        var choosingSquare = 'searching'
-        var currentPosition =position
+        var choosingSquare = 'searching';
+        var currentPosition = position;
         if (orientation == 'leftRight') {
             var directionOfTravel: string = 'left'
             while (choosingSquare != 'done') {    
@@ -162,8 +162,12 @@ export class HitTarget {
                         choosingSquare = 'done'
                         break
                         case 'hitWater':
-                        case 'edge':
+                        currentPosition = position;
                         directionOfTravel = 'right'
+                        break
+                        case 'edge':
+                        directionOfTravel = 'right';
+                        currentPosition = position;
                         break
                         case 'hitShip':
                         currentPosition = { Row: currentPosition.Row, Column: (currentPosition.Column - 1) }
@@ -174,6 +178,14 @@ export class HitTarget {
                     switch(squareRight){
                         case 'blank':
                         hitSquare = { Row: currentPosition.Row, Column: (currentPosition.Column + 1) }
+                        choosingSquare = 'done'
+                        break
+                        case 'hitWater':
+                        hitSquare = { Row: 'J', Column: 10 }
+                        choosingSquare = 'done'
+                        break
+                        case 'edge':
+                        hitSquare = { Row: 'J', Column: 10 }
                         choosingSquare = 'done'
                         break
                         case 'hitShip':
