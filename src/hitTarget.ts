@@ -1,3 +1,4 @@
+import {ShipInformation} from './shipInformation'
 export class HitTarget {
     public checkSides(currentGrid, position, side: string):string {
         var alreadyHit: string;
@@ -47,37 +48,37 @@ export class HitTarget {
         }
         return alreadyHit;
     }
-    public directionChange (shipInformation, position) {
-        if (shipInformation.DirectionOfTravel == 'left' ) {
-            shipInformation.DirectionOfTravel = 'right'
-            shipInformation.CurrentPosition = position;
+    public directionChange (shipInformation: ShipInformation, position) {
+        if (shipInformation.directionOfTravel == 'left' ) {
+            shipInformation.directionOfTravel = 'right'
+            shipInformation.currentPosition = position;
         }
-        if (shipInformation.DirectionOfTravel == 'up' ) {
-            shipInformation.DirectionOfTravel = 'down'
-            shipInformation.CurrentPosition = position;
+        if (shipInformation.directionOfTravel == 'up' ) {
+            shipInformation.directionOfTravel = 'down'
+            shipInformation.currentPosition = position;
         }
         return shipInformation;
     }
-    public checkSquare(position,square,shipInformation,columnAdd, rowAdd) {
+    public checkSquare(position, square, shipInformation: ShipInformation, columnAdd, rowAdd) {
         switch(square){
             case 'blank':
-                shipInformation.EndsFound++;
-                 shipInformation = this.directionChange(shipInformation,position);
+                shipInformation.endsFound++;
+                shipInformation = this.directionChange(shipInformation,position);
                 break;
             case 'hitWater':
-                shipInformation.EndsFound++;
-                shipInformation.BoatEndsFound++;
+                shipInformation.endsFound++;
+                shipInformation.boatEndsFound++;
                 shipInformation = this.directionChange(shipInformation, position);
                 break;
             case 'edge':
-                shipInformation.BoatEndsFound++;
-                shipInformation.EndsFound++;
+                shipInformation.boatEndsFound++;
+                shipInformation.endsFound++;
                 shipInformation = this.directionChange(shipInformation,position);
                 break
             case 'hitShip':
-                var columnPosition = shipInformation.CurrentPosition.Column + columnAdd;
-                var rowPosition = String.fromCharCode(shipInformation.CurrentPosition.Row.charCodeAt(0) + rowAdd);
-                shipInformation.CurrentPosition = { Row: rowPosition, Column: columnPosition };
+                var columnPosition = shipInformation.currentPosition.Column + columnAdd;
+                var rowPosition = String.fromCharCode(shipInformation.currentPosition.Row.charCodeAt(0) + rowAdd);
+                shipInformation.currentPosition = { Row: rowPosition, Column: columnPosition };
                 shipInformation.lengthOfShip++
                 break;
         }
@@ -85,57 +86,53 @@ export class HitTarget {
     }
 
     public checkDone(currentGrid, position): boolean {
-        var shipInformation: {EndsFound: number, BoatEndsFound: number, CurrentPosition: {Row: string, Column: number }, LengthOfShip: number, DirectionOfTravel: string}
-        var boatSunk = false
-        var orientation = this.findOrientation(currentGrid, position)
-        shipInformation.EndsFound = 0;
-        shipInformation.BoatEndsFound = 0;
-        shipInformation.CurrentPosition = position;
-        shipInformation.LengthOfShip = 0;
+        var shipInformation = new ShipInformation(0,0,position,0,'');
+        var boatSunk = false;
+        var orientation = this.findOrientation(currentGrid, position);
         
         if (orientation != 'undetermined') {
             if (orientation == 'leftRight'){
-                shipInformation.DirectionOfTravel = 'left';
+                shipInformation.directionOfTravel = 'left';
                 var counter: number = 0;
-                while ((shipInformation.DirectionOfTravel != 'done') && (counter < 100)) {
-                    var squareRight: string = this.checkSides(currentGrid, shipInformation.CurrentPosition, 'r')
-                    if (shipInformation.DirectionOfTravel == 'right') {    
+                while ((shipInformation.directionOfTravel != 'done') && (counter < 100)) {
+                    var squareRight: string = this.checkSides(currentGrid, shipInformation.currentPosition, 'r')
+                    if (shipInformation.directionOfTravel == 'right') {    
                         shipInformation = this.checkSquare(position,squareRight, shipInformation, 1, 0);
                     }
-                    var squareLeft: string = this.checkSides(currentGrid, shipInformation.CurrentPosition, 'l')
-                    if (shipInformation.DirectionOfTravel == 'left') {    
+                    var squareLeft: string = this.checkSides(currentGrid, shipInformation.currentPosition, 'l')
+                    if (shipInformation.directionOfTravel == 'left') {    
                         shipInformation = this.checkSquare(position,squareLeft, shipInformation, -1, 0);
                     }
                     
-                    if ((shipInformation.EndsFound == 2)|| shipInformation.LengthOfShip == 5){
-                        shipInformation.DirectionOfTravel = 'done';
+                    if ((shipInformation.endsFound == 2)|| shipInformation.lengthOfShip == 5){
+                        shipInformation.directionOfTravel = 'done';
                     }
                     counter++;
                 }
-                if (shipInformation.BoatEndsFound == 2 || shipInformation.LengthOfShip == 5){
+                if (shipInformation.boatEndsFound == 2 || shipInformation.lengthOfShip == 5){
                     boatSunk = true;
                 };
             };
 
             if (orientation == 'upDown'){
-                shipInformation.DirectionOfTravel = 'up'
+                shipInformation.directionOfTravel = 'up'
                 var counter: number = 0;
-                while ((shipInformation.DirectionOfTravel != 'done') && (counter < 100)) {
-                    var squareDown: string = this.checkSides(currentGrid, shipInformation.CurrentPosition, 'd');
-                    if (shipInformation.DirectionOfTravel == 'down') {    
+                while ((shipInformation.directionOfTravel != 'done') && (counter < 100)) {
+                    var squareDown: string = this.checkSides(currentGrid, shipInformation.currentPosition, 'd');
+                    if (shipInformation.directionOfTravel == 'down') {    
                         shipInformation = this.checkSquare(position,squareDown, shipInformation, 0, 1);
                     }
-                    var squareUp: string = this.checkSides(currentGrid, shipInformation.CurrentPosition, 'u');
-                    if (shipInformation.DirectionOfTravel == 'up') {    
+                    var squareUp: string = this.checkSides(currentGrid, shipInformation.currentPosition, 'u');
+                    if (shipInformation.directionOfTravel == 'up') {    
                        shipInformation = this.checkSquare(position,squareUp, shipInformation, 0, -1); 
                     }
                     
-                    if ((shipInformation.EndsFound == 2) || shipInformation.LengthOfShip == 5){
-                        shipInformation.DirectionOfTravel = 'done';
+                    if ((shipInformation.endsFound == 2) || shipInformation.lengthOfShip == 5){
+                        shipInformation.directionOfTravel = 'done';
                     }
                     counter++;
                 }
-                if (shipInformation.BoatEndsFound == 2 || shipInformation.LengthOfShip == 5){
+                if (shipInformation.boatEndsFound == 2 || shipInformation.lengthOfShip == 5){
                     boatSunk = true;
                 };
             };
