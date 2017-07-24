@@ -5,9 +5,9 @@ export class MyBot {
         return [
             { StartingSquare: { Row: "A", Column: 2 }, EndingSquare : { Row: "A", Column: 6 } },
             { StartingSquare: { Row: "C", Column: 1 }, EndingSquare : { Row: "C", Column: 4 } },
-            { StartingSquare: { Row: "E", Column: 1 }, EndingSquare : { Row: "E", Column: 3 } },
+            { StartingSquare: { Row: "H", Column: 4 }, EndingSquare : { Row: "J", Column: 4 } },
             { StartingSquare: { Row: "G", Column: 1 }, EndingSquare : { Row: "G", Column: 3 } },
-            { StartingSquare: { Row: "I", Column: 1 }, EndingSquare : { Row: "I", Column: 2 } },
+            { StartingSquare: { Row: "H", Column: 10 }, EndingSquare : { Row: "I", Column: 10 } },
         ]
     }
 
