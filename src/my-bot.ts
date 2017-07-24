@@ -19,6 +19,7 @@ export class MyBot {
                  var previousShot = gamestate.MyShots[gamestate.MyShots.length - i - 1];
                  if (previousShot.WasHit == true){
                    finished = hitTarget.checkDone(gamestate.MyShots,previousShot.Position);
+                   break;
                  }
             }
             var result: {Row: string, Column: number };
