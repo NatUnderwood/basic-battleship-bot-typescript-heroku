@@ -192,12 +192,12 @@ export class HitTarget {
             hitSquare = { Row: position.Row, Column: (position.Column + 1) }
         }
         var squareUp: string = this.checkSides(currentGrid, position,'u');
-        if (squareLeft == 'blank' && done == 'no'){
+        if (squareUp == 'blank' && done == 'no'){
             done ='yes'
             hitSquare = { Row: String.fromCharCode(position.Row.charCodeAt(0) - 1), Column: (position.Column ) }
         }
         var squareDown: string = this.checkSides(currentGrid, position,'d');
-        if (squareRight == 'blank' && done == 'no' ){
+        if (squareDown == 'blank' && done == 'no' ){
             done ='yes'
             hitSquare = { Row: String.fromCharCode(position.Row.charCodeAt(0) + 1), Column: (position.Column) }
         }
