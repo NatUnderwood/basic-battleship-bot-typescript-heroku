@@ -14,16 +14,17 @@ export class MyBot {
     public selectTarget(gamestate) {
         if  (gamestate.MyShots.length > 0) {
             var finished = true;
+            var previousShot = gamestate.MyShots[gamestate.MyShots.length - 1];
             var hitTarget = new HitTarget;
             for ( var i = 0; i < Math.min(gamestate.MyShots.length,4); i++){
-                 var previousShot = gamestate.MyShots[gamestate.MyShots.length - i - 1];
+                 previousShot = gamestate.MyShots[gamestate.MyShots.length - i - 1];
                  if (previousShot.WasHit == true){
                    finished = hitTarget.checkDone(gamestate.MyShots,previousShot.Position);
                    break;
                  }
             }
             var result: {Row: string, Column: number };
-            if(finished) {
+            if (finished) {
                 var isValid: boolean = true ;
                 var randomTarget = new RandomTarget;
                 while (isValid) {   
