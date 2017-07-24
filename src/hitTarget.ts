@@ -51,7 +51,6 @@ export class HitTarget {
         var endsFound:number = 0;
         var boatSunk = false
         var orientation = this.findOrientation(currentGrid, position)
-        console.log(orientation);
         var directionOfTravel: string;
         var currentPosition = position 
         if (orientation != 'undetermined'){
@@ -119,28 +118,28 @@ export class HitTarget {
             if (orientation == 'upDown'){
                 directionOfTravel = 'up'
                 var counter: number = 0;
-                while (directionOfTravel != 'done'&& counter<100) {
-                    var squareDown: string = this.checkSides(currentGrid, currentPosition, 'd')
+                while (directionOfTravel != 'done' && counter < 100) {
+                    var squareDown: string = this.checkSides(currentGrid, currentPosition, 'd');
                     if (directionOfTravel == 'down') {    
                         switch(squareDown){
                             case 'blank':
-                                endsFound++
-                                break
+                                endsFound++;
+                                break;
                             case 'hitWater':
-                                boatEndsFound++
-                                endsFound++
-                                break
+                                boatEndsFound++;
+                                endsFound++;
+                                break;
                             case 'edge':
-                                boatEndsFound++
-                                endsFound++
-                                break
+                                boatEndsFound++;
+                                endsFound++;
+                                break;
                             case 'hitShip':
-                                currentPosition = { Row: (String.fromCharCode(currentPosition.Row.charCodeAt(0) +1)), Column: (currentPosition.Column ) }
-                                length++
-                                break
+                                currentPosition = { Row: (String.fromCharCode(currentPosition.Row.charCodeAt(0) +1)), Column: (currentPosition.Column ) };
+                                length++;
+                                break;
                         }
                     }
-                    var squareUp: string = this.checkSides(currentGrid, currentPosition, 'u')
+                    var squareUp: string = this.checkSides(currentGrid, currentPosition, 'u');
                     if (directionOfTravel == 'up') {    
                         switch(squareUp){
                             case 'blank':
@@ -167,7 +166,7 @@ export class HitTarget {
                         }
                     }
                     
-                    if ((endsFound == 2)|| length == 5){
+                    if ((endsFound == 2) || length == 5){
                         directionOfTravel = 'done';
                     }
                     counter++;
@@ -231,8 +230,7 @@ export class HitTarget {
             var directionOfTravel: string = 'left'
             var counter: number = 0;
             while (choosingSquare != 'done'&&counter<100) {    
-                var squareLeft: string = this.checkSides(currentGrid, currentPosition,'l')
-                
+                var squareLeft: string = this.checkSides(currentGrid, currentPosition,'l')                
                 if (directionOfTravel == 'left') {    
                     switch(squareLeft){
                         case 'blank':
@@ -279,46 +277,45 @@ export class HitTarget {
         if (orientation == 'upDown') {
             var directionOfTravel: string = 'up'
             var counter: number = 0;
-            while (choosingSquare != 'done'&&counter<100) {    
-                var squareUp: string = this.checkSides(currentGrid, currentPosition,'u')
-                
+            while (choosingSquare != 'done' && counter < 100) {    
+                var squareUp: string = this.checkSides(currentGrid, currentPosition,'u')                
                 if (directionOfTravel == 'up') {    
                     switch(squareUp){
                         case 'blank':
-                            hitSquare = { Row: (String.fromCharCode(currentPosition.Row.charCodeAt(0) -1)), Column: (currentPosition.Column) }
-                            choosingSquare = 'done'
-                            break
+                            hitSquare = { Row: (String.fromCharCode(currentPosition.Row.charCodeAt(0) -1)), Column: (currentPosition.Column) };
+                            choosingSquare = 'done';
+                            break;
                         case 'hitWater':
                             currentPosition = position;
-                            directionOfTravel = 'down'
-                            break
+                            directionOfTravel = 'down';
+                            break;
                         case 'edge':
                             directionOfTravel = 'down';
                             currentPosition = position;
-                            break
+                            break;
                         case 'hitShip':
-                            currentPosition = { Row: (String.fromCharCode(currentPosition.Row.charCodeAt(0) -1)), Column: (currentPosition.Column) }
-                            break
+                            currentPosition = { Row: (String.fromCharCode(currentPosition.Row.charCodeAt(0) -1)), Column: (currentPosition.Column) };
+                            break;
                     }
                 }
                 var squareDown: string = this.checkSides(currentGrid,currentPosition,'d')
                 if (directionOfTravel == 'down') {    
                     switch(squareDown){
                         case 'blank':
-                            hitSquare = { Row: (String.fromCharCode(currentPosition.Row.charCodeAt(0) +1)), Column: (currentPosition.Column) }
-                            choosingSquare = 'done'
-                            break
+                            hitSquare = { Row: (String.fromCharCode(currentPosition.Row.charCodeAt(0) +1)), Column: (currentPosition.Column) };
+                            choosingSquare = 'done';
+                            break;
                         case 'hitWater':
-                            hitSquare = { Row: 'J', Column: 10 }
-                            choosingSquare = 'done'
-                            break
+                            hitSquare = { Row: 'J', Column: 10 };
+                            choosingSquare = 'done';
+                            break;
                         case 'edge':
-                            hitSquare = { Row: 'J', Column: 10 }
-                            choosingSquare = 'done'
-                            break
+                            hitSquare = { Row: 'J', Column: 10 };
+                            choosingSquare = 'done';
+                            break;
                         case 'hitShip':
-                            currentPosition = { Row: (String.fromCharCode(currentPosition.Row.charCodeAt(0) + 1)), Column: (currentPosition.Column) }
-                            break
+                            currentPosition = { Row: (String.fromCharCode(currentPosition.Row.charCodeAt(0) + 1)), Column: (currentPosition.Column) };
+                            break;
                     }
                 }
                 counter++
