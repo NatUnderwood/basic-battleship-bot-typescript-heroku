@@ -85,41 +85,41 @@ export class HitTarget {
                     if (directionOfTravel == 'left') {    
                         switch(squareLeft){
                             case 'blank':
-                                directionOfTravel = 'right'
-                                //blankEndsFound++
-                                endsFound++
-                                currentPosition = position
-                                break
+                                directionOfTravel = 'right';
+                                //blankEndsFound++;
+                                endsFound++;
+                                currentPosition = position;
+                                break;
                             case 'hitWater':
-                                boatEndsFound++
-                                endsFound++
-                                directionOfTravel = 'right'
-                                currentPosition = position
-                                break
+                                boatEndsFound++;
+                                endsFound++;
+                                directionOfTravel = 'right';
+                                currentPosition = position;
+                                break;
                             case 'edge':
-                                boatEndsFound++
-                                endsFound++
-                                directionOfTravel = 'right'
-                                currentPosition = position
-                                break
+                                boatEndsFound++;
+                                endsFound++;
+                                directionOfTravel = 'right';
+                                currentPosition = position;
+                                break;
                             case 'hitShip':
-                                currentPosition = { Row: currentPosition.Row, Column: (currentPosition.Column - 1) }
-                                //length++
-                                break
+                                currentPosition = { Row: currentPosition.Row, Column: (currentPosition.Column - 1) };
+                                //length++;
+                                break;
                         }
                     }
                     
                     if ((/*(blankEndsFound + boatEndsFound)*/endsFound == 2)/*|| length == 5*/){
-                        directionOfTravel = 'done'
+                        directionOfTravel = 'done';
                     }
-                    counter++
+                    counter++;
                 }
                 if (boatEndsFound == 2 /*|| length == 5*/){
-                    boatSunk = true
-                }
-            }
+                    boatSunk = true;
+                };
+            };
         }
-        return boatSunk
+        return boatSunk;
     }
     public guessOrientation(currentGrid, position){
         var done: string = 'no'
@@ -175,7 +175,7 @@ export class HitTarget {
             while (choosingSquare != 'done'&&counter<100) {    
                 var squareLeft: string = this.checkSides(currentGrid, currentPosition,'l')
                 
-                if (directionOfTravel = 'left') {    
+                if (directionOfTravel == 'left') {    
                     switch(squareLeft){
                         case 'blank':
                         hitSquare = { Row: currentPosition.Row, Column: (currentPosition.Column - 1) }
@@ -195,7 +195,7 @@ export class HitTarget {
                     }
                 }
                 var squareRight: string = this.checkSides(currentGrid,currentPosition,'r')
-                if (directionOfTravel = 'right') {    
+                if (directionOfTravel == 'right') {    
                     switch(squareRight){
                         case 'blank':
                             hitSquare = { Row: currentPosition.Row, Column: (currentPosition.Column + 1) }
