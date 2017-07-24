@@ -15,7 +15,7 @@ export class MyBot {
         if  (gamestate.MyShots.length > 0) {
             var finished = true
             var hitTarget = new HitTarget;
-            for ( var i = 0; i < Math.min(gamestate.MyShots.length,4); i++){
+            for ( var i = 0; i < Math.min(gamestate.MyShots.length,5); i++){
                  var previousShot = gamestate.MyShots[gamestate.MyShots.length - i - 1];
                  if (previousShot.WasHit == true){
                    finished = hitTarget.checkDone(gamestate.MyShots,previousShot.Position);
