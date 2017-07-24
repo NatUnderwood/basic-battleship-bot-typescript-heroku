@@ -17,12 +17,11 @@ export class MyBot {
             var hitTarget = new HitTarget;
             for ( var i = 0; i < Math.min(gamestate.MyShots.length,4); i++){
                  var previousShot = gamestate.MyShots[gamestate.MyShots.length - i - 1];
-                 if (previousShot.WasHit == 'true'){
+                 if (previousShot.WasHit == true){
                    finished = hitTarget.checkDone(gamestate.MyShots,previousShot.Position);
                    break;
                  }
             }
-            
             var result: {Row: string, Column: number };
             if(finished) {
                 var isValid: boolean = true ;
