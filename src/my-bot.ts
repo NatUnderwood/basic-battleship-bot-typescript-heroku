@@ -10,6 +10,27 @@ export class MyBot {
             { StartingSquare: { Row: "I", Column: 1 }, EndingSquare : { Row: "J", Column: 1 } },
         ]
     }
+    public selectRandomTarget(gamestate): {Row: string, Column: number } {
+        var isValid: boolean = true ;
+        var randomTarget = new RandomTarget;
+        var result: {Row: string, Column: number };
+        while (isValid) {   
+            var newShot = randomTarget.getNextRandomTarget();
+            var alreadyHit = false;
+            for (var i = 0;i< gamestate.MyShots.length; i++ ){
+                if (newShot.Column == gamestate.MyShots[i].Position.Column && newShot.Row == gamestate.MyShots[i].Position.Row){
+                    alreadyHit = true;
+                }
+
+            }
+            if (!alreadyHit){
+                isValid = false
+            }
+
+            result = newShot;
+        }
+        return result
+    }
 
     public selectTarget(gamestate) {
         if  (gamestate.MyShots.length > 0) {
@@ -25,23 +46,7 @@ export class MyBot {
             }
             var result: {Row: string, Column: number };
             if (finished) {
-                var isValid: boolean = true ;
-                var randomTarget = new RandomTarget;
-                while (isValid) {   
-                    var newShot = randomTarget.getNextRandomTarget();
-                    var alreadyHit = false;
-                    for (var i = 0;i< gamestate.MyShots.length; i++ ){
-                        if (newShot.Column == gamestate.MyShots[i].Position.Column && newShot.Row == gamestate.MyShots[i].Position.Row){
-                            alreadyHit = true;
-                        }
-
-                    }
-                    if (!alreadyHit){
-                        isValid = false
-                    }
-
-                    result = newShot;
-                }
+                result = this.selectRandomTarget(gamestate)
             }
             else {
                 var orientation = hitTarget.findOrientation(gamestate.MyShots, previousShot.Position);
@@ -53,7 +58,7 @@ export class MyBot {
                 }
             }
             return result;
-
+            
         }
         else {
             var randomTarget = new RandomTarget;
