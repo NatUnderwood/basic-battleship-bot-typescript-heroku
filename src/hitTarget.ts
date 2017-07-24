@@ -57,7 +57,7 @@ export class HitTarget {
             if (orientation == 'leftRight'){
                 directionOfTravel = 'left';
                 var counter: number = 0;
-                while (directionOfTravel != 'done'&& counter<100) {
+                while ((directionOfTravel != 'done') && (counter < 100)) {
                     var squareRight: string = this.checkSides(currentGrid, currentPosition, 'r')
                     if (directionOfTravel == 'right') {    
                         switch(squareRight){
@@ -118,7 +118,7 @@ export class HitTarget {
             if (orientation == 'upDown'){
                 directionOfTravel = 'up'
                 var counter: number = 0;
-                while (directionOfTravel != 'done' && counter < 100) {
+                while ((directionOfTravel != 'done') && (counter < 100)) {
                     var squareDown: string = this.checkSides(currentGrid, currentPosition, 'd');
                     if (directionOfTravel == 'down') {    
                         switch(squareDown){
@@ -192,7 +192,7 @@ export class HitTarget {
             hitSquare = { Row: position.Row, Column: (position.Column + 1) }
         }
         var squareUp: string = this.checkSides(currentGrid, position,'u');
-        if (squareUp == 'blank' && done == 'no'){
+        if (squareLeft == 'blank' && done == 'no'){
             done ='yes'
             hitSquare = { Row: String.fromCharCode(position.Row.charCodeAt(0) - 1), Column: (position.Column ) }
         }
@@ -322,8 +322,5 @@ export class HitTarget {
             }
         }
         return hitSquare;
-    }
-    public findNextTarget() {
-
     }
 }
