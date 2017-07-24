@@ -127,7 +127,7 @@ export class HitTarget {
                     }
                     var squareUp: string = this.checkSides(currentGrid, shipInformation.CurrentPosition, 'u');
                     if (shipInformation.DirectionOfTravel == 'up') {    
-                       shipInformation = this.checkSquare(position,squareDown, shipInformation, 0, -1); 
+                       shipInformation = this.checkSquare(position,squareUp, shipInformation, 0, -1); 
                     }
                     
                     if ((shipInformation.EndsFound == 2) || shipInformation.LengthOfShip == 5){
