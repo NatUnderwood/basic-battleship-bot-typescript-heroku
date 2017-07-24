@@ -53,7 +53,7 @@ export class HitTarget {
         var orientation = this.findOrientation(currentGrid, position)
         var directionOfTravel: string;
         var currentPosition = position 
-        if (orientation != 'undetermined'){
+        if (orientation != 'undetermined') {
             if (orientation == 'leftRight'){
                 directionOfTravel = 'left';
                 var counter: number = 0;
@@ -160,7 +160,7 @@ export class HitTarget {
                                 currentPosition = position;
                                 break;
                             case 'hitShip':
-                                currentPosition = { Row: (String.fromCharCode(currentPosition.Row.charCodeAt(0) -1)), Column: (currentPosition.Column) };
+                                currentPosition = { Row: (String.fromCharCode(currentPosition.Row.charCodeAt(0) - 1)), Column: (currentPosition.Column) };
                                 length++;
                                 break;
                         }
@@ -302,7 +302,7 @@ export class HitTarget {
                 if (directionOfTravel == 'down') {    
                     switch(squareDown){
                         case 'blank':
-                            hitSquare = { Row: (String.fromCharCode(currentPosition.Row.charCodeAt(0) +1)), Column: (currentPosition.Column) };
+                            hitSquare = { Row: (String.fromCharCode(currentPosition.Row.charCodeAt(0) + 1)), Column: (currentPosition.Column) };
                             choosingSquare = 'done';
                             break;
                         case 'hitWater':
