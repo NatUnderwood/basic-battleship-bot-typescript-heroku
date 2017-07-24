@@ -13,13 +13,12 @@ export class MyBot {
 
     public selectTarget(gamestate) {
         if  (gamestate.MyShots.length > 0) {
-            var finished = true
+            var finished = true;
             var hitTarget = new HitTarget;
-            for ( var i = 0; i < Math.min(gamestate.MyShots.length,5); i++){
+            for ( var i = 0; i < Math.min(gamestate.MyShots.length,4); i++){
                  var previousShot = gamestate.MyShots[gamestate.MyShots.length - i - 1];
                  if (previousShot.WasHit == true){
                    finished = hitTarget.checkDone(gamestate.MyShots,previousShot.Position);
-                   break;
                  }
             }
             var result: {Row: string, Column: number };
@@ -48,8 +47,6 @@ export class MyBot {
                     result = hitTarget.guessOrientation(gamestate.MyShots, previousShot.Position)
                 }
                 else {
-                    //var randomTarget = new RandomTarget;
-                    //result = randomTarget.getNextRandomTarget()
                     result = hitTarget.destroyShip(gamestate.MyShots, previousShot.Position)
                 }
             }
