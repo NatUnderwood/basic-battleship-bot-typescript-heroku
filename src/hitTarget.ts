@@ -229,7 +229,7 @@ export class HitTarget {
         if (orientation == 'leftRight') {
             var directionOfTravel: string = 'left'
             var counter: number = 0;
-            while (choosingSquare != 'done'&&counter<100) {    
+            while (choosingSquare != 'done' && counter < 100) {    
                 var squareLeft: string = this.checkSides(currentGrid, currentPosition,'l')                
                 if (directionOfTravel == 'left') {    
                     switch(squareLeft){
@@ -282,7 +282,7 @@ export class HitTarget {
                 if (directionOfTravel == 'up') {    
                     switch(squareUp){
                         case 'blank':
-                            hitSquare = { Row: (String.fromCharCode(currentPosition.Row.charCodeAt(0) -1)), Column: (currentPosition.Column) };
+                            hitSquare = { Row: (String.fromCharCode(currentPosition.Row.charCodeAt(0) - 1)), Column: (currentPosition.Column) };
                             choosingSquare = 'done';
                             break;
                         case 'hitWater':
@@ -294,7 +294,7 @@ export class HitTarget {
                             currentPosition = position;
                             break;
                         case 'hitShip':
-                            currentPosition = { Row: (String.fromCharCode(currentPosition.Row.charCodeAt(0) -1)), Column: (currentPosition.Column) };
+                            currentPosition = { Row: (String.fromCharCode(currentPosition.Row.charCodeAt(0) - 1)), Column: (currentPosition.Column) };
                             break;
                     }
                 }
@@ -318,7 +318,7 @@ export class HitTarget {
                             break;
                     }
                 }
-                counter++
+                counter++;
             }
         }
         return hitSquare;
