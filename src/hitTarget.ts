@@ -47,24 +47,22 @@ export class HitTarget {
 
     public checkDone(currentGrid, position): boolean {
         var boatEndsFound: number = 0;
-        //var blankEndsFound: number = 0;
-        //var length: number = 1;
+        var length: number = 1;
         var endsFound:number = 0;
         var boatSunk = false
         var orientation = this.findOrientation(currentGrid, position)
         console.log(orientation);
-        var directionOfTravel: string = 'left';
-        var currentPosition = position
-        
+        var directionOfTravel: string;
+        var currentPosition = position 
         if (orientation != 'undetermined'){
             if (orientation == 'leftRight'){
+                directionOfTravel = 'left';
                 var counter: number = 0;
                 while (directionOfTravel != 'done'&& counter<100) {
                     var squareRight: string = this.checkSides(currentGrid, currentPosition, 'r')
                     if (directionOfTravel == 'right') {    
                         switch(squareRight){
                             case 'blank':
-                                //blankEndsFound++
                                 endsFound++
                                 break
                             case 'hitWater':
@@ -77,7 +75,7 @@ export class HitTarget {
                                 break
                             case 'hitShip':
                                 currentPosition = { Row: currentPosition.Row, Column: (currentPosition.Column + 1) }
-                                //length++
+                                length++
                                 break
                         }
                     }
@@ -86,7 +84,6 @@ export class HitTarget {
                         switch(squareLeft){
                             case 'blank':
                                 directionOfTravel = 'right';
-                                //blankEndsFound++;
                                 endsFound++;
                                 currentPosition = position;
                                 break;
@@ -104,17 +101,78 @@ export class HitTarget {
                                 break;
                             case 'hitShip':
                                 currentPosition = { Row: currentPosition.Row, Column: (currentPosition.Column - 1) };
-                                //length++;
+                                length++;
                                 break;
                         }
                     }
                     
-                    if ((/*(blankEndsFound + boatEndsFound)*/endsFound == 2)/*|| length == 5*/){
+                    if ((endsFound == 2)|| length == 5){
                         directionOfTravel = 'done';
                     }
                     counter++;
                 }
-                if (boatEndsFound == 2 /*|| length == 5*/){
+                if (boatEndsFound == 2 || length == 5){
+                    boatSunk = true;
+                };
+            };
+
+            if (orientation == 'upDown'){
+                directionOfTravel = 'up'
+                var counter: number = 0;
+                while (directionOfTravel != 'done'&& counter<100) {
+                    var squareDown: string = this.checkSides(currentGrid, currentPosition, 'd')
+                    if (directionOfTravel == 'down') {    
+                        switch(squareDown){
+                            case 'blank':
+                                endsFound++
+                                break
+                            case 'hitWater':
+                                boatEndsFound++
+                                endsFound++
+                                break
+                            case 'edge':
+                                boatEndsFound++
+                                endsFound++
+                                break
+                            case 'hitShip':
+                                currentPosition = { Row: (String.fromCharCode(currentPosition.Row.charCodeAt(0) +1)), Column: (currentPosition.Column ) }
+                                length++
+                                break
+                        }
+                    }
+                    var squareUp: string = this.checkSides(currentGrid, currentPosition, 'u')
+                    if (directionOfTravel == 'up') {    
+                        switch(squareUp){
+                            case 'blank':
+                                directionOfTravel = 'down';
+                                endsFound++;
+                                currentPosition = position;
+                                break;
+                            case 'hitWater':
+                                boatEndsFound++;
+                                endsFound++;
+                                directionOfTravel = 'down';
+                                currentPosition = position;
+                                break;
+                            case 'edge':
+                                boatEndsFound++;
+                                endsFound++;
+                                directionOfTravel = 'down';
+                                currentPosition = position;
+                                break;
+                            case 'hitShip':
+                                currentPosition = { Row: (String.fromCharCode(currentPosition.Row.charCodeAt(0) -1)), Column: (currentPosition.Column) };
+                                length++;
+                                break;
+                        }
+                    }
+                    
+                    if ((endsFound == 2)|| length == 5){
+                        directionOfTravel = 'done';
+                    }
+                    counter++;
+                }
+                if (boatEndsFound == 2 || length == 5){
                     boatSunk = true;
                 };
             };
@@ -165,11 +223,11 @@ export class HitTarget {
         return direction
     }
     public destroyShip(currentGrid, position) {
-        //var orientation = this.findOrientation(currentGrid,position);
+        var orientation = this.findOrientation(currentGrid,position);
         var hitSquare;
         var choosingSquare = 'searching';
         var currentPosition = position;
-        if (/*orientation == 'leftRight'*/true) {
+        if (orientation == 'leftRight') {
             var directionOfTravel: string = 'left'
             var counter: number = 0;
             while (choosingSquare != 'done'&&counter<100) {    
@@ -211,6 +269,55 @@ export class HitTarget {
                             break
                         case 'hitShip':
                             currentPosition = { Row: currentPosition.Row, Column: (currentPosition.Column + 1) }
+                            break
+                    }
+                }
+                counter++
+            }
+        }
+
+        if (orientation == 'upDown') {
+            var directionOfTravel: string = 'up'
+            var counter: number = 0;
+            while (choosingSquare != 'done'&&counter<100) {    
+                var squareUp: string = this.checkSides(currentGrid, currentPosition,'u')
+                
+                if (directionOfTravel == 'up') {    
+                    switch(squareUp){
+                        case 'blank':
+                            hitSquare = { Row: (String.fromCharCode(currentPosition.Row.charCodeAt(0) -1)), Column: (currentPosition.Column) }
+                            choosingSquare = 'done'
+                            break
+                        case 'hitWater':
+                            currentPosition = position;
+                            directionOfTravel = 'down'
+                            break
+                        case 'edge':
+                            directionOfTravel = 'down';
+                            currentPosition = position;
+                            break
+                        case 'hitShip':
+                            currentPosition = { Row: (String.fromCharCode(currentPosition.Row.charCodeAt(0) -1)), Column: (currentPosition.Column) }
+                            break
+                    }
+                }
+                var squareDown: string = this.checkSides(currentGrid,currentPosition,'d')
+                if (directionOfTravel == 'down') {    
+                    switch(squareDown){
+                        case 'blank':
+                            hitSquare = { Row: (String.fromCharCode(currentPosition.Row.charCodeAt(0) +1)), Column: (currentPosition.Column) }
+                            choosingSquare = 'done'
+                            break
+                        case 'hitWater':
+                            hitSquare = { Row: 'J', Column: 10 }
+                            choosingSquare = 'done'
+                            break
+                        case 'edge':
+                            hitSquare = { Row: 'J', Column: 10 }
+                            choosingSquare = 'done'
+                            break
+                        case 'hitShip':
+                            currentPosition = { Row: (String.fromCharCode(currentPosition.Row.charCodeAt(0) + 1)), Column: (currentPosition.Column) }
                             break
                     }
                 }
