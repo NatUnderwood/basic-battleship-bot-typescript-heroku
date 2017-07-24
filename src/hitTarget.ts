@@ -11,13 +11,13 @@ export class HitTarget {
             }
             break;
             case 'r':
-            columnAdd = +1;
+            columnAdd = 1;
             if (position.Column == 10){
                 alreadyHit = 'edge';
             }
             break;
             case 'u':
-            rowAdd = +1
+            rowAdd = 1
             if (position.Row == 'A'){
                 alreadyHit = 'edge'
             }
@@ -216,7 +216,7 @@ export class HitTarget {
         if (squareUp == 'hitShip'|| squareDown == 'hitShip') {
             direction ='upDown'
         }
-        if(squareUp != 'hitShip'&& squareDown != 'hitShip'&& squareLeft != 'hitShip'&& squareRight != 'hitShip'){
+        if((squareUp != 'hitShip') && (squareDown != 'hitShip') && ( squareLeft != 'hitShip') && (squareRight != 'hitShip')){
             direction ='undetermined'
         } 
         return direction
