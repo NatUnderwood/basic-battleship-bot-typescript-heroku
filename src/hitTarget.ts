@@ -59,6 +59,9 @@ export class HitTarget {
         }
         return shipInformation;
     }
+    public checkSquareTodestroy(position, square, shipInformation: ShipInformation, columnAdd, rowAdd){
+        // am going to have a method in here to do the switch statement in the destroy ships, a bit like the check square method
+    }
     public checkSquare(position, square, shipInformation: ShipInformation, columnAdd, rowAdd) {
         switch(square){
             case 'blank':
@@ -182,6 +185,7 @@ export class HitTarget {
         } 
         return direction
     }
+    //need to clean this bit up, its so confusing am sorry!
     public destroyShip(currentGrid, position) {
         var orientation = this.findOrientation(currentGrid,position);
         var hitSquare;
