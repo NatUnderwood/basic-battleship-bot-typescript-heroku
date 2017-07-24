@@ -7,7 +7,7 @@ export class MyBot {
             { StartingSquare: { Row: "C", Column: 1 }, EndingSquare : { Row: "C", Column: 4 } },
             { StartingSquare: { Row: "H", Column: 5 }, EndingSquare : { Row: "J", Column: 5 } },
             { StartingSquare: { Row: "G", Column: 1 }, EndingSquare : { Row: "G", Column: 3 } },
-            { StartingSquare: { Row: "H", Column: 10 }, EndingSquare : { Row: "I", Column: 10 } },
+            { StartingSquare: { Row: "I", Column: 1 }, EndingSquare : { Row: "J", Column: 1 } },
         ]
     }
 
@@ -18,7 +18,7 @@ export class MyBot {
             var hitTarget = new HitTarget;
             for ( var i = 0; i < Math.min(gamestate.MyShots.length,4); i++){
                  previousShot = gamestate.MyShots[gamestate.MyShots.length - i - 1];
-                 if (previousShot.WasHit == true){
+                 if (previousShot.WasHit) {
                    finished = hitTarget.checkDone(gamestate.MyShots,previousShot.Position);
                    break;
                  }
@@ -40,19 +40,19 @@ export class MyBot {
                         isValid = false
                     }
 
-                    result = newShot
+                    result = newShot;
                 }
             }
             else {
                 var orientation = hitTarget.findOrientation(gamestate.MyShots, previousShot.Position);
                 if (orientation == 'undetermined') {
-                    result = hitTarget.guessOrientation(gamestate.MyShots, previousShot.Position)
+                    result = hitTarget.guessOrientation(gamestate.MyShots, previousShot.Position);
                 }
                 else {
-                    result = hitTarget.destroyShip(gamestate.MyShots, previousShot.Position)
+                    result = hitTarget.destroyShip(gamestate.MyShots, previousShot.Position);
                 }
             }
-            return result
+            return result;
 
         }
         else {
