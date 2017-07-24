@@ -24,12 +24,12 @@ export class MyBot {
 
             }
             if (!alreadyHit){
-                isValid = false
+                isValid = false;
             }
 
             result = newShot;
         }
-        return result
+        return result;
     }
 
     public selectTarget(gamestate) {
@@ -46,7 +46,7 @@ export class MyBot {
             }
             var result: {Row: string, Column: number };
             if (finished) {
-                result = this.selectRandomTarget(gamestate)
+                result = this.selectRandomTarget(gamestate);
             }
             else {
                 var orientation = hitTarget.findOrientation(gamestate.MyShots, previousShot.Position);

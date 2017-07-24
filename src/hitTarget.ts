@@ -5,34 +5,37 @@ export class HitTarget {
         var rowAdd: number = 0;
         switch (side) {
             case 'l':
-            columnAdd = -1;
-            if (position.Column == 1){
-                alreadyHit = 'edge';
-            }
-            break;
+                columnAdd = - 1;
+                if (position.Column == 1){
+                    alreadyHit = 'edge';
+                }
+                break;
             case 'r':
-            columnAdd = 1;
-            if (position.Column == 10){
-                alreadyHit = 'edge';
-            }
-            break;
+                columnAdd = 1;
+                if (position.Column == 10){
+                    alreadyHit = 'edge';
+                }
+                break;
             case 'u':
-            rowAdd = 1
-            if (position.Row == 'A'){
-                alreadyHit = 'edge'
-            }
-            break
+                rowAdd = 1;
+                if (position.Row == 'A'){
+                    alreadyHit = 'edge';
+                }
+                break;
             case 'd':
-            rowAdd = -1
-            if (position.Row == 'J'){
-            alreadyHit = 'edge'
-            }
+                rowAdd = - 1
+                if (position.Row == 'J'){
+                    alreadyHit = 'edge';
+                }
+                break;
         }
         
         if (alreadyHit != 'edge') {
             alreadyHit = 'blank';
+            var columnPosition = position.Column + columnAdd;
+            var rowPosition = String.fromCharCode(position.Row.charCodeAt(0) + rowAdd);
             for (var i = 0;i< currentGrid.length; i++ ){
-                if (((position.Column + columnAdd) == currentGrid[i].Position.Column) && (String.fromCharCode(position.Row.charCodeAt(0) + rowAdd) == currentGrid[i].Position.Row)){
+                if ((columnPosition == currentGrid[i].Position.Column) && (rowPosition == currentGrid[i].Position.Row)){
                     if (currentGrid[i].WasHit){
                         alreadyHit = 'hitShip'
                     }
