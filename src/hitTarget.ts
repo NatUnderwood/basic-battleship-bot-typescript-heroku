@@ -46,12 +46,13 @@ export class HitTarget {
     }
 
     public checkDone(currentGrid, position): boolean {
-        var boatEndsFound = 0;
-        //var blankEndsFound = 0;
-        //var length = 1;
-        var endsFound = 0;
+        var boatEndsFound: number = 0;
+        //var blankEndsFound: number = 0;
+        //var length: number = 1;
+        var endsFound:number = 0;
         var boatSunk = false
         var orientation = this.findOrientation(currentGrid, position)
+        console.log(orientation);
         var directionOfTravel: string = 'left';
         var currentPosition = position
         
